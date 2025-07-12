@@ -1,0 +1,2660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaHarvest | Sustainable Water Solutions</title>
+    <style>
+        :root {
+            --primary: #00b4d8;
+            --secondary: #0077b6;
+            --accent: #90e0ef;
+            --dark: #03045e;
+            --light: #caf0f8;
+            --success: #2ecc71;
+            --warning: #f39c12;
+            --danger: #e74c3c;
+            --text: #333;
+            --gray: #6c757d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        body {
+            background-color: #f8f9fa;
+            color: var(--text);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Water wave animation at bottom */
+        .water-wave {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%2300b4d8"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%2300b4d8"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%2300b4d8"/></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+            z-index: -1;
+            animation: wave 10s linear infinite;
+        }
+
+        @keyframes wave {
+            0% { background-position-x: 0; }
+            100% { background-position-x: 1200px; }
+        }
+
+        /* Navigation */
+        nav {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 1.8rem;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .active {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0, 180, 216, 0.7), rgba(0, 119, 182, 0.7)), 
+                        url('https://i.pinimg.com/736x/f9/b5/9a/f9b59a5c5f790be2a5bc6fb46024135e.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25" fill="%23f8f9fa"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" opacity=".5" fill="%23f8f9fa"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23f8f9fa"/></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeInUp 1s ease 0.2s forwards;
+            opacity: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: white;
+            color: var(--primary);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeInUp 1s ease 0.4s forwards;
+            opacity: 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: var(--dark);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary);
+            color: white;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 5%;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 1rem auto 0;
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        /* Calculator Page */
+        .calculator-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.2);
+        }
+
+        .result-box {
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .result-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            height: 250px;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            color: white;
+            transform: translateY(100%);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+            margin-bottom: 0;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Water Quality Checker */
+        .quality-checker {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .checker-tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .checker-tab {
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .checker-tab.active {
+            border-bottom-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .checker-content {
+            display: none;
+        }
+
+        .checker-content.active {
+            display: block;
+        }
+
+        .upload-area {
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary);
+            background-color: rgba(0, 180, 216, 0.05);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        /* Marketplace */
+        .marketplace {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .product-rating {
+            color: var(--warning);
+            margin-bottom: 1rem;
+        }
+
+        /* Success Stories Map */
+        .map-container {
+            height: 500px;
+            background-color: #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .map-overlay {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            max-width: 300px;
+        }
+
+        .story-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .story-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Home Simulator */
+        .simulator-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .simulator-tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .simulator-tab {
+            padding: 0.8rem 1.5rem;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .simulator-tab.active {
+            border-bottom-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .simulator-content {
+            display: none;
+        }
+
+        .simulator-content.active {
+            display: block;
+        }
+
+        .house-model {
+            width: 100%;
+            height: 400px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .roof-area {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 20%;
+            background-color: #ccc;
+            clip-path: polygon(0% 100%, 50% 0%, 100% 100%);
+        }
+
+        .tank {
+            position: absolute;
+            bottom: 10%;
+            right: 10%;
+            width: 20%;
+            height: 40%;
+            background-color: var(--accent);
+            border-radius: 10px;
+        }
+
+        .pipe {
+            position: absolute;
+            background-color: var(--primary);
+        }
+
+        /* Articles */
+        .articles {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .article-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .article-card:hover .article-image img {
+            transform: scale(1.05);
+        }
+
+        .article-content {
+            padding: 1.5rem;
+        }
+
+        .article-date {
+            font-size: 0.8rem;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .article-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--dark);
+        }
+
+        .article-excerpt {
+            color: var(--gray);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Page transitions */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease forwards;
+            min-height: calc(100vh - 70px);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .active-page {
+            display: block;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-value {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background-color: var(--secondary);
+                flex-direction: column;
+                align-items: center;
+                padding-top: 2rem;
+                transition: all 0.5s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+            }
+
+            .hamburger {
+                display: block;
+                color: white;
+                font-size: 1.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .form-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+</head>
+<body>
+    <!-- Water wave animation -->
+    <div class="water-wave"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo" onclick="showPage('home')">
+            <i class="fas fa-tint"></i>
+            <span>AquaHarvest</span>
+        </a>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#" class="active" onclick="showPage('home')">Home</a></li>
+            <li><a href="#" onclick="showPage('about')">About</a></li>
+            <li><a href="#" onclick="showPage('calculator')">Calculator</a></li>
+            <li><a href="#" onclick="showPage('quality')">Quality Checker</a></li>
+            <li><a href="#" onclick="showPage('marketplace')">Marketplace</a></li>
+            <li><a href="#" onclick="showPage('stories')">Success Stories</a></li>
+            <li><a href="#" onclick="showPage('simulator')">Home Simulator</a></li>
+            <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+        </ul>
+        
+        <div class="hamburger" id="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div class="page active-page" id="home">
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Revolutionizing Water Conservation</h1>
+                <p>Discover how you can conserve water, reduce your environmental impact, and save money with our comprehensive rainwater harvesting solutions.</p>
+                <div>
+                    <a href="#" class="btn btn-primary" onclick="showPage('calculator')">Calculate Your Savings</a>
+                    <a href="#" class="btn btn-outline" onclick="showPage('simulator')">Try Our Simulator</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title">
+                <h2>Why Choose Rainwater Harvesting?</h2>
+                <p>Harnessing rainwater provides numerous benefits for both homeowners and the environment</p>
+            </div>
+            
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-value" id="waterSaved">0</div>
+                    <p>Liters of Water Saved</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="moneySaved">0</div>
+                    <p>Dollars Saved Annually</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="systemsInstalled">0</div>
+                    <p>Systems Installed</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="co2Reduced">0</div>
+                    <p>kg CO₂ Reduced</p>
+                </div>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe-americas"></i>
+                    </div>
+                    <h3>Environmental Protection</h3>
+                    <p>Reduce stormwater runoff by up to 95%, prevent erosion, and conserve precious groundwater resources while reducing your carbon footprint.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Cost Savings</h3>
+                    <p>Lower your water bills by 30-50% by using harvested rainwater for irrigation, toilets, laundry, and other non-potable uses.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Water Security</h3>
+                    <p>Ensure a reliable water supply during droughts or water restrictions. Many systems can provide weeks of water autonomy.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" style="background-color: var(--light);">
+            <div class="section-title">
+                <h2>Featured Products</h2>
+                <p>Top-rated rainwater harvesting systems for your home</p>
+            </div>
+            
+            <div class="marketplace">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://i.pinimg.com/736x/3d/f3/33/3df333640209bfc84f64009192c710bb.jpg" alt="Residential Rainwater System">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">AquaHome 2000</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(42)</span>
+                        </div>
+                        <div class="product-price">$1,299</div>
+                        <a href="#" class="btn btn-primary" style="width: 100%;" onclick="showPage('marketplace')">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://i.pinimg.com/736x/a2/62/08/a2620813cf308df30f734b52355caaf3.jpg" alt="Commercial Rainwater System">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">EcoTank Pro</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(28)</span>
+                        </div>
+                        <div class="product-price">$2,499</div>
+                        <a href="#" class="btn btn-primary" style="width: 100%;" onclick="showPage('marketplace')">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://i.pinimg.com/736x/34/fc/5f/34fc5f35ed4ca8729006a35daadd1100.jpg" alt="Agricultural Rainwater System">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">FarmHarvest XL</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(15)</span>
+                        </div>
+                        <div class="product-price">$3,999</div>
+                        <a href="#" class="btn btn-primary" style="width: 100%;" onclick="showPage('marketplace')">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title">
+                <h2>Latest Articles</h2>
+                <p>Stay informed with our expert insights on water conservation</p>
+            </div>
+            
+            <div class="articles">
+                <div class="article-card">
+                    <div class="article-image">
+                        <img src="https://i.pinimg.com/736x/0b/f8/f5/0bf8f50bbe5d2f4a1ccbecff05b7fecf.jpg" alt="Rainwater Harvesting">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-date">June 15, 2023</div>
+                        <h3 class="article-title">The Complete Guide to Residential Rainwater Harvesting</h3>
+                        <p class="article-excerpt">Learn how to implement a rainwater harvesting system in your home, from basic setups to advanced filtration systems.</p>
+                        <a href="#" class="btn btn-outline" style="width: 100%;">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-image">
+                        <img src="https://i.pinimg.com/736x/15/b2/05/15b2058e0e2708ff37ca4923ee5bee11.jpg" alt="Water Conservation">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-date">May 28, 2023</div>
+                        <h3 class="article-title">How Cities Are Using Rainwater Harvesting to Combat Drought</h3>
+                        <p class="article-excerpt">Discover innovative municipal programs that are making a difference in water conservation efforts worldwide.</p>
+                        <a href="#" class="btn btn-outline" style="width: 100%;">Read More</a>
+                    </div>
+                </div>
+                
+                <div class="article-card">
+                    <div class="article-image">
+                        <img src="https://i.pinimg.com/736x/79/76/bf/7976bfccffff52e064183950b39a6300.jpg" alt="Sustainable Living">
+                    </div>
+                    <div class="article-content">
+                        <div class="article-date">April 10, 2023</div>
+                        <h3 class="article-title">The Financial Benefits of Rainwater Harvesting: A 5-Year Analysis</h3>
+                        <p class="article-excerpt">We break down the numbers to show how rainwater harvesting can pay for itself and save you money in the long run.</p>
+                        <a href="#" class="btn btn-outline" style="width: 100%;">Read More</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>AquaHarvest</h3>
+                                        <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showPage('home')">Home</a></li>
+                        <li><a href="#" onclick="showPage('about')">About</a></li>
+                        <li><a href="#" onclick="showPage('calculator')">Calculator</a></li>
+                        <li><a href="#" onclick="showPage('quality')">Quality Checker</a></li>
+                        <li><a href="#" onclick="showPage('marketplace')">Marketplace</a></li>
+                        <li><a href="#" onclick="showPage('stories')">Success Stories</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Installation Guides</a></li>
+                        <li><a href="#">Maintenance Tips</a></li>
+                        <li><a href="#">Government Rebates</a></li>
+                        <li><a href="#">Water Conservation Facts</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Water Way, Eco City, EC 12345</li>
+                        <li><i class="fas fa-phone"></i>9392830249</li>
+                        <li><i class="fas fa-envelope"></i> info@aquaharvest.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM - 5PM</li>
+                        <li><i class="fas fa-certificate"></i> BBB Accredited A+ Rating</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy;  All Rights Reserved. <a href="#" style="color: var(--accent);">Privacy Policy</a> | <a href="#" style="color: var(--accent);">Terms of Service</a></p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- About Page -->
+    <div class="page" id="about">
+        <section class="hero" style="background: linear-gradient(rgba(0, 180, 216, 0.7), rgba(0, 119, 182, 0.7)), url('https://images.unsplash.com/photo-1605000804763-247f67b3557e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');">
+            <div class="hero-content">
+                <h1>About Rainwater Harvesting</h1>
+                <p>Learn about the history, science, and benefits of collecting and using rainwater</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title">
+                <h2>The Science of Rainwater Harvesting</h2>
+                <p>Understanding how this ancient practice works in modern contexts</p>
+            </div>
+            
+            <div class="calculator-container">
+                <h3>What is Rainwater Harvesting?</h3>
+                <p>Rainwater harvesting is the ancient practice of collecting and storing rainwater for later use rather than allowing it to run off. This technique, dating back over 4,000 years to the Indus Valley Civilization, is experiencing a renaissance as communities worldwide seek sustainable water solutions in the face of climate change and water scarcity.</p>
+                
+                <div class="gallery" style="margin: 2rem 0; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
+                    <div class="gallery-item">
+                        <img src="https://i.pinimg.com/736x/d1/7c/c3/d17cc3981f3361b75404fd4e23fbca69.jpg" alt="Ancient Water Collection">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://i.pinimg.com/736x/d2/95/1e/d2951e3a9e2f36dcaac706ec9abc68ea.jpg" alt="Modern System">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://i.pinimg.com/736x/28/eb/37/28eb37b7a6189344697df3024fa140e5.jpg" alt="Urban Installation">
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 2rem;">How Modern Systems Work</h3>
+                <p>Contemporary rainwater harvesting systems combine ancient wisdom with modern technology to maximize efficiency and water quality. The basic components include:</p>
+                <ul style="margin: 1rem 0 1rem 2rem;">
+                    <li><strong>Catchment surface:</strong> Typically a roof (metal, tile, or concrete) designed to maximize water collection</li>
+                    <li><strong>Conveyance system:</strong> Gutters and downspouts that channel water while filtering out debris</li>
+                    <li><strong>First-flush diversion:</strong> A mechanism to discard the initial rainwater that may contain contaminants from the catchment surface</li>
+                    <li><strong>Storage tanks:</strong> Above or below-ground containers made from food-grade materials to prevent contamination</li>
+                    <li><strong>Treatment system:</strong> Filtration and disinfection for potable uses (UV, chlorination, or ozone)</li>
+                    <li><strong>Distribution system:</strong> Pumps or gravity feed to deliver water where needed</li>
+                    <li><strong>Overflow mechanism:</strong> Directs excess water to recharge groundwater or stormwater systems</li>
+                </ul>
+                
+                <h3 style="margin-top: 2rem;">The Hydrological Impact</h3>
+                <p>Urbanization has dramatically altered natural water cycles by replacing permeable surfaces with impervious ones. Rainwater harvesting helps restore balance by:</p>
+                
+                <div class="features" style="margin-top: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                    <div class="feature-card" style="text-align: left; padding: 1.5rem;">
+                        <h3 style="color: var(--success);"><i class="fas fa-cloud-rain"></i> Reducing Runoff</h3>
+                        <p>Decreases stormwater volume by 50-90%, significantly lowering flood risks and erosion while preventing pollutants from entering waterways.</p>
+                    </div>
+                    
+                    <div class="feature-card" style="text-align: left; padding: 1.5rem;">
+                        <h3 style="color: var(--primary);"><i class="fas fa-water"></i> Replenishing Groundwater</h3>
+                        <p>When overflow is directed to infiltration systems, it can recharge aquifers at rates comparable to natural conditions.</p>
+                    </div>
+                    
+                    <div class="feature-card" style="text-align: left; padding: 1.5rem;">
+                        <h3 style="color: var(--warning);"><i class="fas fa-leaf"></i> Supporting Ecosystems</h3>
+                        <p>By reducing demand on municipal systems and natural water bodies, harvesting helps maintain ecological flows crucial for aquatic life.</p>
+                    </div>
+                </div>
+                
+                <h3 style="margin-top: 2rem;">Water Quality Considerations</h3>
+                <p>Rainwater is naturally soft and free of minerals, but quality depends on collection methods and storage. Properly maintained systems can produce water meeting WHO guidelines for non-potable uses, and with appropriate treatment, even drinking water standards.</p>
+                
+                <div style="background-color: var(--light); padding: 1.5rem; border-radius: 10px; margin-top: 1.5rem;">
+                    <h4><i class="fas fa-flask" style="color: var(--primary);"></i> Typical Rainwater Composition</h4>
+                    <p>pH: 5.0-6.5 (slightly acidic) | TDS: 10-50 mg/L | Bacteria: Generally low but varies | Heavy metals: Typically below detection limits</p>
+                </div>
+                
+                <h3 style="margin-top: 2rem;">Global Applications</h3>
+                <p>Rainwater harvesting adapts to diverse environments:</p>
+                <ul style="margin: 1rem 0 1rem 2rem;">
+                    <li><strong>Arid regions:</strong> Large underground cisterns store water for extended dry periods</li>
+                    <li><strong>Tropical areas:</strong> Systems designed to handle intense rainfall events with overflow management</li>
+                    <li><strong>Urban settings:</strong> Compact, aesthetically designed tanks integrated with buildings</li>
+                    <li><strong>Agricultural use:</strong> Large-scale collection ponds for irrigation</li>
+                </ul>
+                
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#" class="btn btn-primary" onclick="showPage('quality')">Check Your Water Quality</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Calculator Page -->
+    <div class="page" id="calculator">
+        <section class="hero" style="background: linear-gradient(rgba(0, 180, 216, 0.7), rgba(0, 119, 182, 0.7)), url('https://i.pinimg.com/736x/cf/df/5c/cfdf5cfb5ce03b53c3e5a519f0356e69.jpg');">
+            <div class="hero-content">
+                <h1>Rainwater Savings Calculator</h1>
+                <p>Discover how much water and money you could save with a rainwater harvesting system</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title">
+                <h2>Calculate Your Potential Savings</h2>
+                <p>Our calculator helps you estimate the benefits of rainwater harvesting for your specific situation</p>
+            </div>
+            
+            <div class="calculator-container">
+                <div class="form-group">
+                    <label for="roofArea">Roof Area (square meters)</label>
+                    <input type="number" id="roofArea" class="form-control" placeholder="Enter your roof area">
+                    <small style="color: var(--gray);">Measure the footprint of your house and multiply by 1.1 for roof overhang</small>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="rainfall">Average Annual Rainfall (mm)</label>
+                        <input type="number" id="rainfall" class="form-control" placeholder="Enter your area's average rainfall">
+                    </div>
+                    <div class="form-group">
+                        <label for="waterCost">Local Water Cost ($/1000L)</label>
+                        <input type="number" id="waterCost" class="form-control" placeholder="Enter your water cost" value="2.50">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="runoffCoefficient">Roof Type</label>
+                    <select id="runoffCoefficient" class="form-control">
+                        <option value="0.95">Metal roof (95% efficiency)</option>
+                        <option value="0.90" selected>Tile roof (90% efficiency)</option>
+                        <option value="0.80">Concrete roof (80% efficiency)</option>
+                        <option value="0.60">Green roof (60% efficiency)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="usagePercentage">Percentage of Water You'll Replace</label>
+                    <select id="usagePercentage" class="form-control">
+                        <option value="25">25% (Outdoor use only)</option>
+                        <option value="50" selected>50% (Outdoor + some indoor)</option>
+                        <option value="75">75% (Most non-potable uses)</option>
+                        <option value="90">90% (Full system with treatment)</option>
+                    </select>
+                </div>
+                
+                <button class="btn btn-primary" style="width: 100%;" onclick="calculateRainwater()">Calculate Savings</button>
+                
+                <div class="result-box" id="resultBox" style="display: none;">
+                    <h3>Your Rainwater Harvest Potential</h3>
+                    <div class="result-value" id="resultValue">0</div>
+                    <p>liters per year</p>
+                    <div style="margin: 1.5rem 0; height: 1px; background-color: rgba(0,0,0,0.1);"></div>
+                    <h4>Financial Savings</h4>
+                    <p id="moneySavedResult">Annual savings: $0</p>
+                    <p id="paybackPeriod">System payback period: 0 years</p>
+                    <div style="margin: 1.5rem 0; height: 1px; background-color: rgba(0,0,0,0.1);"></div>
+                    <p id="resultDescription">This is enough water to fill <span id="bathtubs">0</span> standard bathtubs or supply <span id="people">0</span> people's annual drinking water needs!</p>
+                    
+                    <div style="margin-top: 2rem;">
+                        <a href="#" class="btn btn-secondary" onclick="showPage('marketplace')">Browse Systems</a>
+                        <a href="#" class="btn btn-outline" style="color: var(--dark); border-color: var(--dark);" onclick="showPage('simulator')">Try Our Simulator</a>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 3rem;">
+                    <h3>Understanding the Numbers</h3>
+                    <p>The calculation uses this formula:</p>
+                    <p style="background-color: var(--light); padding: 1rem; border-radius: 5px; font-family: monospace;">
+                        Annual Harvest (L) = Roof Area (m²) × Rainfall (mm) × Runoff Coefficient × 0.8 (efficiency factor) × 1000
+                    </p>
+                    <p>The efficiency factor accounts for system losses, evaporation, and overflow during heavy rains.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Water Quality Checker Page -->
+    <div class="page" id="quality">
+        <section class="hero" style="background: linear-gradient(rgba(0, 180, 216, 0.7), rgba(0, 119, 182, 0.7)), url('https://i.pinimg.com/736x/46/4e/76/464e76717549eb4ad09c6d4094c495c8.jpg');">
+            <div class="hero-content">
+                <h1>Water Quality Checker</h1>
+                <p>Test and analyze your rainwater quality with our advanced tools</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title">
+                <h2>Rainwater Quality Analysis</h2>
+                <p>Ensure your harvested water is safe for its intended use</p>
+            </div>
+            
+            <div class="quality-checker">
+                <div class="checker-tabs">
+                    <div class="checker-tab active" onclick="switchTab('manual')">Manual Testing</div>
+                    <div class="checker-tab" onclick="switchTab('ai')">AI Vision Analysis</div>
+                </div>
+                
+                <div class="checker-content active" id="manual-tab">
+                    <h3>Manual Water Quality Testing</h3>
+                    <p>Enter your test results below to evaluate your rainwater quality. For accurate results, use a water testing kit or professional lab service.</p>
+                    
+                    <div class="form-group">
+                        <label for="waterAppearance">Water Appearance</label>
+                        <select id="waterAppearance" class="form-control">
+                            <option value="clear">Clear</option>
+                            <option value="slightlyCloudy">Slightly Cloudy</option>
+                            <option value="cloudy">Cloudy</option>
+                            <option value="colored">Colored (describe below)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="waterColor">If colored, describe color</label>
+                        <input type="text" id="waterColor" class="form-control" placeholder="e.g., brown, green, yellow">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="waterPh">pH Level (0-14)</label>
+                            <input type="number" id="waterPh" class="form-control" placeholder="Enter pH value" min="0" max="14" step="0.1">
+                        </div>
+                        <div class="form-group">
+                            <label for="waterTurbidity">Turbidity (NTU)</label>
+                            <input type="number" id="waterTurbidity" class="form-control" placeholder="Enter turbidity">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="waterBacteria">Bacteria Presence</label>
+                            <select id="waterBacteria" class="form-control">
+                                <option value="none">None detected</option>
+                                <option value="low">Low levels</option>
+                                <option value="moderate">Moderate levels</option>
+                                <option value="high">High levels</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="waterChemicals">Chemical Contaminants</label>
+                            <select id="waterChemicals" class="form-control">
+                                <option value="none">None detected</option>
+                                <option value="low">Low levels</option>
+                                <option value="moderate">Moderate levels</option>
+                                <option value="high">High levels</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="waterOdor">Odor Description</label>
+                        <input type="text" id="waterOdor" class="form-control" placeholder="Describe any odors">
+                    </div>
+                    
+                    <button class="btn btn-primary" style="width: 100%;" onclick="analyzeWaterQuality()">Analyze Water Quality</button>
+                    
+                    <div class="result-box" id="qualityResultBox" style="display: none; text-align: left;">
+                        <h3>Your Water Quality Analysis</h3>
+                        <div id="qualityResultContent"></div>
+                        <div style="margin-top: 1.5rem;">
+                            <a href="#" class="btn btn-secondary" onclick="showPage('marketplace')">Browse Treatment Systems</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="checker-content" id="ai-tab">
+                    <h3>AI-Powered Water Quality Analysis</h3>
+                    <p>Upload a photo of your water sample, and our AI will analyze its appearance to estimate quality. For best results:</p>
+                    <ul style="margin: 1rem 0 1.5rem 2rem;">
+                        <li>Use a clear glass container against a white background</li>
+                        <li>Ensure good lighting</li>
+                        <li>Take the photo from the side at water level</li>
+                    </ul>
+                    
+                    <div class="upload-area" onclick="document.getElementById('waterUpload').click()">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <h4>Upload Water Sample Photo</h4>
+                        <p>Click to browse or drag and drop</p>
+                        <input type="file" id="waterUpload" accept="image/*" style="display: none;" onchange="handleWaterUpload(event)">
+                    </div>
+                    
+                    <div class="result-box" id="aiResultBox" style="display: none; text-align: left;">
+                        <h3>AI Analysis Results</h3>
+                        <div id="aiResultContent"></div>
+                        <div style="margin-top: 1.5rem;">
+                            <a href="#" class="btn btn-secondary" onclick="showPage('marketplace')">Browse Treatment Systems</a>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem;">
+                        <h4>How Our AI Works</h4>
+                        <p>Our computer vision model has been trained on thousands of water samples with known quality parameters. It analyzes:</p>
+                        <ul style="margin: 1rem 0 1rem 2rem;">
+                            <li>Color spectrum and intensity</li>
+                            <li>Turbidity and particle visibility</li>
+                            <li>Surface characteristics</li>
+                            <li>Light refraction patterns</li>
+                        </ul>
+                        <p><strong>Note:</strong> AI analysis complements but doesn't replace laboratory testing for drinking water.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Marketplace Page -->
+    <div class="page" id="marketplace">
+        <section class="hero" style="background: linear-gradient(rgba(0, 180, 216, 0.7), rgba(0, 119, 182, 0.7)), url('https://i.pinimg.com/736x/79/80/77/798077353b4813dc5587d5c42b581113.jpg');">
+            <div class="hero-content">
+                <h1>Rainwater System Marketplace</h1>
+                <p>Compare and shop for the perfect rainwater harvesting solution</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title">
+                <h2>Find Your Perfect System</h2>
+                <p>Browse our curated selection of rainwater harvesting products</p>
+            </div>
+            
+            <div style="max-width: 1000px; margin: 0 auto 3rem;">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="systemType">System Type</label>
+                        <select id="systemType" class="form-control">
+                            <option value="all">All Types</option>
+                            <option value="residential">Residential</option>
+                            <option value="commercial">Commercial</option>
+                            <option value="agricultural">Agricultural</option>
+                            <option value="modular">Modular/Expandable</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="systemCapacity">Capacity (Liters)</label>
+                        <select id="systemCapacity" class="form-control">
+                            <option value="all">Any Capacity</option>
+                            <option value="500">Up to 500L</option>
+                            <option value="2000">500-2,000L</option>
+                            <option value="5000">2,000-5,000L</option>
+                            <option value="10000">5,000-10,000L</option>
+                            <option value="10000+">10,000L+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="systemPrice">Price Range</label>
+                        <select id="systemPrice" class="form-control">
+                            <option value="all">Any Price</option>
+                            <option value="500">Under $500</option>
+                            <option value="1000">$500-$1,000</option>
+                            <option value="2500">$1,000-$2,500</option>
+                            <option value="5000">$2,500-$5,000</option>
+                            <option value="5000+">$5,000+</option>
+                        </select>
+                    </div>
+                </div>
+                <button class="btn btn-primary" style="width: 100%;" onclick="filterProducts()">Filter Products</button>
+            </div>
+            
+            <div class="marketplace">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://i.pinimg.com/736x/2e/0b/c4/2e0bc429e9eaca09d30693a469c84ecb.jpg" alt="AquaHome 2000">
+                        <div class="product-badge" style="position: absolute; top: 1rem; right: 1rem; background-color: var(--success); color: white; padding: 0.3rem 0.6rem; border-radius: 50px; font-size: 0.8rem;">BEST SELLER</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">AquaHome 2000</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>(42)</span>
+                        </div>
+                        <div class="product-specs" style="margin-bottom: 1rem; font-size: 0.9rem;">
+                            <div><i class="fas fa-arrows-alt-v" style="color: var(--gray);"></i> Capacity: 2,000L</div>
+                            <div><i class="fas fa-home" style="color: var(--gray);"></i> Type: Residential</div>
+                            <div><i class="fas fa-tools" style="color: var(--gray);"></i> Includes: Pump, filter, installation kit</div>
+                        </div>
+                        <div class="product-price">$1,299</div>
+                        <a href="#" class="btn btn-primary" style="width: 100%;">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://i.pinimg.com/736x/2e/46/ee/2e46eeef1d59c61409fb4bee73bb5e2a.jpg" alt="EcoTank Pro">
+                        <div class="product-badge" style="position: absolute; top: 1rem; right: 1rem; background-color: var(--primary); color: white; padding: 0.3rem 0.6rem; border-radius: 50px; font-size: 0.8rem;">PREMIUM</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">EcoTank Pro</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(28)</span>
+                        </div>
+                        <div class="product-specs" style="margin-bottom: 1rem; font-size: 0.9rem;">
+                            <div><i class="fas fa-arrows-alt-v" style="color: var(--gray);"></i> Capacity: 5,000L</div>
+                            <div><i class="fas fa-building" style="color: var(--gray);"></i> Type: Commercial</div>
+                            <div><i class="fas fa-tools" style="color: var(--gray);"></i> Includes: Smart monitor, UV treatment</div>
+                        </div>
+                        <div class="product-price">$2,499</div>
+                        <a href="#" class="btn btn-primary" style="width: 100%;">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://i.pinimg.com/736x/4c/29/08/4c2908db94d85aa170f3863581756af3.jpg" alt="FarmHarvest XL">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">FarmHarvest XL</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(15)</span>
+                        </div>
+                        <div class="product-specs" style="margin-bottom: 1rem; font-size: 0.9rem;">
+                            <div><i class="fas fa-arrows-alt-v" style="color: var(--gray);"></i> Capacity: 20,000L</div>
+                            <div><i class="fas fa-tractor" style="color: var(--gray);"></i> Type: Agricultural</div>
+                            <div><i class="fas fa-tools" style="color: var(--gray);"></i> Includes: Irrigation kit, large filter</div>
+                        </div>
+                        <div class="product-price">$3,999</div>
+                        <a href="#" class="btn btn-primary" style="width: 100%;">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://i.pinimg.com/736x/02/dd/e1/02dde1d7f1802c978f005f7ef148965d.jpg" alt="UrbanRain Compact">
+                        <div class="product-badge" style="position: absolute; top: 1rem; right: 1rem; background-color: var(--warning); color: white; padding: 0.3rem 0.6rem; border-radius: 50px; font-size: 0.8rem;">NEW</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">UrbanRain Compact</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <i class="far fa-star"></i>
+                            <span>(8)</span>
+                        </div>
+                        <div class="product-specs" style="margin-bottom: 1rem; font-size: 0.9rem;">
+                            <div><i class="fas fa-arrows-alt-v" style="color: var(--gray);"></i> Capacity: 500L</div>
+                            <div><i class="fas fa-city" style="color: var(--gray);"></i> Type: Urban/Balcony</div>
+                            <div><i class="fas fa-tools" style="color: var(--gray);"></i> Includes: Decorative planter</div>
+                        </div>
+                        <div class="product-price">$399</div>
+                        <a href="#" class="btn btn-primary" style="width: 100%;">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://i.pinimg.com/736x/eb/08/24/eb0824e405e8fe26442b6dd9cd11731c.jpg" alt="ModuTank System">
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">ModuTank System</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>(34)</span>
+                        </div>
+                        <div class="product-specs" style="margin-bottom: 1rem; font-size: 0.9rem;">
+                            <div><i class="fas fa-arrows-alt-v" style="color: var(--gray);"></i> Capacity: 1,000-10,000L</div>
+                            <div><i class="fas fa-puzzle-piece" style="color: var(--gray);"></i> Type: Modular</div>
+                            <div><i class="fas fa-tools" style="color: var(--gray);"></i> Includes: Expansion connectors</div>
+                        </div>
+                        <div class="product-price">$899/base unit</div>
+                        <a href="#" class="btn btn-primary" style="width: 100%;">View Details</a>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://i.pinimg.com/736x/4c/b5/5c/4cb55c892a172c732a64150dc0743806.jpg" alt="PureFlow Treatment">
+                        <div class="product-badge" style="position: absolute; top: 1rem; right: 1rem; background-color: var(--danger); color: white; padding: 0.3rem 0.6rem; border-radius: 50px; font-size: 0.8rem;">CLEARANCE</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">PureFlow Treatment</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <span>(19)</span>
+                        </div>
+                        <div class="product-specs" style="margin-bottom: 1rem; font-size: 0.9rem;">
+                            <div><i class="fas fa-filter" style="color: var(--gray);"></i> Type: Water Treatment</div>
+                            <div><i class="fas fa-glass-whiskey" style="color: var(--gray);"></i> For: Potable water</div>
+                            <div><i class="fas fa-tools" style="color: var(--gray);"></i> Includes: UV, carbon, sediment filters</div>
+                        </div>
+                        <div class="product-price"><span style="text-decoration: line-through; color: var(--gray);">$599</span> $499</div>
+                        <a href="#" class="btn btn-primary" style="width: 100%;">View Details</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#" class="btn btn-secondary">View All Products (24+)</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Success Stories Page -->
+    <div class="page" id="stories">
+        <section class="hero" style="background: linear-gradient(rgba(0, 180, 216, 0.7), rgba(0, 119, 182, 0.7)), url('https://i.pinimg.com/736x/61/0c/a2/610ca292ef183841f2c9a741db6536b6.jpg');">
+            <div class="hero-content">
+                <h1>Success Stories</h1>
+                <p>Discover how communities are transforming their water use through rainwater harvesting</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title">
+                <h2>Local Harvesting Success Stories</h2>
+                <p>Explore real-world implementations and their impacts</p>
+            </div>
+            
+            <div class="map-container" id="map">
+                <div class="map-overlay">
+                    <h4>Filter Stories</h4>
+                    <div class="form-group">
+                        <select id="storyType" class="form-control" onchange="filterStories()">
+                            <option value="all">All Types</option>
+                            <option value="residential">Residential</option>
+                            <option value="commercial">Commercial</option>
+                            <option value="community">Community</option>
+                            <option value="agricultural">Agricultural</option>
+                        </select>
+                    </div>
+                    <div id="selectedStory" style="display: none;">
+                        <h4 id="storyTitle" style="margin-top: 1rem;"></h4>
+                        <p id="storyLocation"></p>
+                        <p id="storySavings"></p>
+                        <a href="#" id="storyLink" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">View Details</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="max-width: 1000px; margin: 3rem auto;">
+                <h3 style="text-align: center; margin-bottom: 2rem;">Featured Case Studies</h3>
+                
+                <div class="features" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                    <div class="feature-card" style="text-align: left; padding: 1.5rem;">
+                        <div style="height: 200px; overflow: hidden; border-radius: 5px; margin-bottom: 1rem;">
+                            <img src="https://i.pinimg.com/736x/f3/83/b8/f383b8f1df4358f3e618a582f98ad4f7.jpg" alt="Urban Home" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h3>Suburban Family Reduces Water Bill by 65%</h3>
+                        <p><i class="fas fa-map-marker-alt" style="color: var(--gray);"></i> Portland, OR</p>
+                        <p>The Johnson family installed a 3,000L system that now supplies all their outdoor water needs and toilet flushing, saving over 100,000L annually.</p>
+                        <a href="#" class="btn btn-outline" style="width: 100%; margin-top: 1rem; color: var(--dark); border-color: var(--dark);">Read Full Story</a>
+                    </div>
+                    
+                    <div class="feature-card" style="text-align: left; padding: 1.5rem;">
+                        <div style="height: 200px; overflow: hidden; border-radius: 5px; margin-bottom: 1rem;">
+                            <img src="https://i.pinimg.com/736x/19/3b/c1/193bc13169624dceee04cbea3e7d39bb.jpg" alt="School Project" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h3>School's Rainwater Project Teaches Sustainability</h3>
+                        <p><i class="fas fa-map-marker-alt" style="color: var(--gray);"></i> Austin, TX</p>
+                        <p>Maplewood Elementary's student-led rainwater harvesting system now irrigates their school garden and serves as a hands-on learning tool for 600 students.</p>
+                        <a href="#" class="btn btn-outline" style="width: 100%; margin-top: 1rem; color: var(--dark); border-color: var(--dark);">Read Full Story</a>
+                    </div>
+                    
+                    <div class="feature-card" style="text-align: left; padding: 1.5rem;">
+                        <div style="height: 200px; overflow: hidden; border-radius: 5px; margin-bottom: 1rem;">
+                            <img src="https://i.pinimg.com/736x/23/e1/6f/23e16f7dd7732429684496cb124c690c.jpg" alt="Vineyard" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <h3>Vineyard Thrives During Drought</h3>
+                        <p><i class="fas fa-map-marker-alt" style="color: var(--gray);"></i> Napa Valley, CA</p>
+                        <p>Sunrise Vineyards' 50,000L rainwater harvesting system allowed them to maintain production during severe water restrictions when neighbors struggled.</p>
+                        <a href="#" class="btn btn-outline" style="width: 100%; margin-top: 1rem; color: var(--dark); border-color: var(--dark);">Read Full Story</a>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#" class="btn btn-secondary">View All Success Stories</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Home Simulator Page -->
+    <div class="page" id="simulator">
+        <section class="hero" style="background: linear-gradient(rgba(0, 180, 216, 0.7), rgba(0, 119, 182, 0.7)), url('https://i.pinimg.com/736x/1e/21/f3/1e21f37de3fbd9b3a89cbb36335acaee.jpg
+');">
+            <div class="hero-content">
+                <h1>Home Rainwater Simulator</h1>
+                <p>Visualize how a rainwater harvesting system would work with your home</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title">
+                <h2>Interactive Home Model</h2>
+                <p>Design and test different rainwater harvesting configurations</p>
+            </div>
+            
+            <div class="simulator-container">
+                <div class="simulator-tabs">
+                    <div class="simulator-tab active" onclick="switchSimulatorTab('design')">System Design</div>
+                    <div class="simulator-tab" onclick="switchSimulatorTab('performance')">Performance Simulation</div>
+                    <div class="simulator-tab" onclick="switchSimulatorTab('cost')">Cost Analysis</div>
+                </div>
+                
+                <div class="simulator-content active" id="design-tab">
+                    <h3>Design Your System</h3>
+                    <p>Customize your rainwater harvesting setup by adjusting the parameters below. The model will update in real-time.</p>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="houseType">House Type</label>
+                            <select id="houseType" class="form-control" onchange="updateSimulator()">
+                                <option value="small">Small Home (100m² roof)</option>
+                                <option value="medium" selected>Medium Home (200m² roof)</option>
+                                <option value="large">Large Home (300m² roof)</option>
+                                <option value="custom">Custom</option>
+                            </select>
+                        </div>
+                        <div class="form-group" id="customRoofGroup" style="display: none;">
+                            <label for="customRoof">Custom Roof Area (m²)</label>
+                            <input type="number" id="customRoof" class="form-control" placeholder="Enter roof area" onchange="updateSimulator()">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="roofMaterial">Roof Material</label>
+                        <select id="roofMaterial" class="form-control" onchange="updateSimulator()">
+                            <option value="metal">Metal (95% efficiency)</option>
+                            <option value="tile" selected>Tile (90% efficiency)</option>
+                            <option value="concrete">Concrete (80% efficiency)</option>
+                            <option value="green">Green Roof (60% efficiency)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tankSize">Storage Tank Size</label>
+                        <select id="tankSize" class="form-control" onchange="updateSimulator()">
+                            <option value="1000">1,000L</option>
+                            <option value="2000">2,000L</option>
+                            <option value="5000" selected>5,000L</option>
+                            <option value="10000">10,000L</option>
+                            <option value="custom">Custom</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group" id="customTankGroup" style="display: none;">
+                        <label for="customTank">Custom Tank Size (Liters)</label>
+                        <input type="number" id="customTank" class="form-control" placeholder="Enter tank size" onchange="updateSimulator()">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="tankLocation">Tank Location</label>
+                        <select id="tankLocation" class="form-control" onchange="updateSimulator()">
+                            <option value="above">Above Ground</option>
+                            <option value="below" selected>Below Ground</option>
+                            <option value="basement">Basement</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="waterUses">Water Uses</label>
+                        <select id="waterUses" class="form-control" multiple onchange="updateSimulator()">
+                            <option value="garden" selected>Garden Irrigation</option>
+                            <option value="toilet" selected>Toilet Flushing</option>
+                            <option value="laundry">Laundry</option>
+                            <option value="drinking">Drinking (with treatment)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="house-model" id="houseModel">
+                        <div class="roof-area" id="roofAreaVisual"></div>
+                        <div class="tank" id="tankVisual"></div>
+                        <!-- Pipes will be added dynamically -->
+                    </div>
+                    
+                    <div class="result-box" style="text-align: left;">
+                        <h3>System Summary</h3>
+                        <div id="systemSummary">
+                            <p><strong>Roof Area:</strong> <span id="summaryRoof">200</span> m²</p>
+                            <p><strong>Annual Collection Potential:</strong> <span id="summaryCollection">0</span> L</p>
+                            <p><strong>Storage Capacity:</strong> <span id="summaryTank">5,000</span> L</p>
+                            <p><strong>Estimated Water Savings:</strong> <span id="summarySavings">0</span>% of total use</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="simulator-content" id="performance-tab">
+                    <h3>Performance Simulation</h3>
+                    <p>See how your system would perform throughout the year based on historical weather data for your location.</p>
+                    
+                    <div class="form-group">
+                        <label for="simLocation">Location</label>
+                        <select id="simLocation" class="form-control" onchange="runPerformanceSimulation()">
+                            <option value="portland">Portland, OR</option>
+                            <option value="austin">Austin, TX</option>
+                            <option value="phoenix">Phoenix, AZ</option>
+                            <option value="miami">Miami, FL</option>
+                            <option value="chicago">Chicago, IL</option>
+                        </select>
+                    </div>
+                    
+                    <div style="background-color: white; padding: 1.5rem; border-radius: 10px; margin-top: 1.5rem;">
+                        <h4>Annual Water Balance</h4>
+                        <div style="height: 300px; background-color: #f5f5f5; display: flex; align-items: flex-end; margin: 1rem 0;">
+                            <!-- Bars will be added dynamically -->
+                            <div id="chartBars" style="display: flex; width: 100%; height: 100%; align-items: flex-end;"></div>
+                        </div>
+                        <div id="chartLegend" style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;"></div>
+                    </div>
+                    
+                    <div class="result-box" style="text-align: left; margin-top: 1.5rem;">
+                        <h4>Simulation Results</h4>
+                        <div id="performanceResults">
+                            <p><strong>Annual Rainfall:</strong> <span id="simRainfall">0</span> mm</p>
+                            <p><strong>Water Collected:</strong> <span id="simCollected">0</span> L (<span id="simCollectionPercent">0</span>% of potential)</p>
+                            <p><strong>Overflow Loss:</strong> <span id="simOverflow">0</span> L (tank too small)</p>
+                            <p><strong>Supply Reliability:</strong> <span id="simReliability">0</span>% of days with sufficient water</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="simulator-content" id="cost-tab">
+                    <h3>Cost-Benefit Analysis</h3>
+                    <p>Calculate the financial viability of your rainwater harvesting system.</p>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="systemCost">System Cost Estimate</label>
+                            <input type="number" id="systemCost" class="form-control" placeholder="Enter estimated cost" value="3500" onchange="runCostAnalysis()">
+                        </div>
+                        <div class="form-group">
+                            <label for="waterPrice">Local Water Price ($/1000L)</label>
+                            <input type="number" id="waterPrice" class="form-control" placeholder="Enter water price" value="2.50" step="0.10" onchange="runCostAnalysis()">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="maintenanceCost">Annual Maintenance Cost</label>
+                        <input type="number" id="maintenanceCost" class="form-control" placeholder="Enter maintenance cost" value="150" onchange="runCostAnalysis()">
+                    </div>
+                    
+                    <div style="background-color: white; padding: 1.5rem; border-radius: 10px; margin-top: 1.5rem;">
+                        <h4>10-Year Financial Projection</h4>
+                        <div style="height: 300px; background-color: #f5f5f5; display: flex; align-items: flex-end; margin: 1rem 0;">
+                            <!-- Cost chart will be added dynamically -->
+                            <div id="costChart" style="display: flex; width: 100%; height: 100%; align-items: flex-end;"></div>
+                        </div>
+                        <div id="costLegend" style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem;"></div>
+                    </div>
+                    
+                    <div class="result-box" style="text-align: left; margin-top: 1.5rem;">
+                        <h4>Financial Summary</h4>
+                        <div id="costResults">
+                            <p><strong>Initial Investment:</strong> $<span id="initialCost">3,500</span></p>
+                            <p><strong>Annual Savings:</strong> $<span id="annualSavings">0</span></p>
+                            <p><strong>Payback Period:</strong> <span id="paybackPeriod">0</span> years</p>
+                            <p><strong>10-Year Net Savings:</strong> $<span id="netSavings">0</span></p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="#" class="btn btn-primary" onclick="showPage('marketplace')">Get a Quote for This System</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div class="page" id="contact">
+        <section class="hero" style="background: linear-gradient(rgba(0, 180, 216, 0.7), rgba(0, 119, 182, 0.7)), url('https://i.pinimg.com/736x/c2/62/f4/c262f461175ff77b407ea465fe789578.jpg');">
+            <div class="hero-content">
+                <h1>Contact Us</h1>
+                <p>Get in touch with our team of rainwater harvesting experts</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="section-title">
+                <h2>We're Here to Help</h2>
+                <p>Have questions or ready to start your rainwater harvesting project?</p>
+            </div>
+            
+            <div style="max-width: 1200px; margin: 0 auto;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                    <div class="contact-form">
+                        <h3 style="margin-bottom: 1.5rem; text-align: center;">Send Us a Message</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" class="form-control" placeholder="Your name">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" class="form-control" placeholder="Your email">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-control" placeholder="Subject">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" class="form-control" placeholder="Your message"></textarea>
+                        </div>
+                        
+                        <button class="btn btn-primary" style="width: 100%;">Send Message</button>
+                    </div>
+                    
+                    <div>
+                        <div style="background-color: white; padding: 2rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); height: 100%;">
+                            <h3 style="margin-bottom: 1.5rem; text-align: center;">Contact Information</h3>
+                            <div style="margin-bottom: 2rem;">
+                                <h4><i class="fas fa-map-marker-alt" style="color: var(--primary); margin-right: 10px;"></i> Our Office</h4>
+                                <p style="margin-left: 28px;">123 Water Way, Eco City, EC 12345</p>
+                            </div>
+                            
+                            <div style="margin-bottom: 2rem;">
+                                <h4><i class="fas fa-phone" style="color: var(--primary); margin-right: 10px;"></i> Phone</h4>
+                                <p style="margin-left: 28px;">9392830249<br>Monday-Friday: 9AM - 5PM</p>
+                            </div>
+                            
+                            <div style="margin-bottom: 2rem;">
+                                <h4><i class="fas fa-envelope" style="color: var(--primary); margin-right: 10px;"></i> Email</h4>
+                                <p style="margin-left: 28px;">info@aquaharvest.com<br>support@aquaharvest.com</p>
+                            </div>
+                            
+                            <div>
+                                <h4><i class="fas fa-calendar-alt" style="color: var(--primary); margin-right: 10px;"></i> Schedule a Consultation</h4>
+                                <p style="margin-left: 28px;">Book a free 30-minute consultation with one of our water specialists.</p>
+                                <a href="#" class="btn btn-outline" style="width: 100%; margin-top: 1rem; color: var(--dark); border-color: var(--dark);">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 3rem;">
+                    <h3 style="text-align: center; margin-bottom: 1.5rem;">Our Team</h3>
+                    <div class="features" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                        <div class="feature-card" style="text-align: center; padding: 1.5rem;">
+                            <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin: 0 auto 1rem; border: 3px solid var(--primary);">
+                                <img src="https://i.pinimg.com/736x/10/cc/dd/10ccdda015002a492e1771a8ab54ddc4.jpg" alt="Sarah Johnson" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <h3>Sarah Johnson</h3>
+                            <p style="color: var(--primary); font-weight: 500;">Lead Water Systems Engineer</p>
+                            <p>10+ years designing residential and commercial rainwater systems.</p>
+                        </div>
+                        
+                        <div class="feature-card" style="text-align: center; padding: 1.5rem;">
+                            <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin: 0 auto 1rem; border: 3px solid var(--primary);">
+                                <img src="https://i.pinimg.com/736x/2f/d0/1c/2fd01c15a064c18f0c64bf69353c0db2.jpg" alt="Michael Chen" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <h3>Michael Chen</h3>
+                            <p style="color: var(--primary); font-weight: 500;">Sustainability Consultant</p>
+                            <p>Specializes in water conservation strategies for urban environments.</p>
+                        </div>
+                        
+                        <div class="feature-card" style="text-align: center; padding: 1.5rem;">
+                            <div style="width: 120px; height: 120px; border-radius: 50%; overflow: hidden; margin: 0 auto 1rem; border: 3px solid var(--primary);">
+                                <img src="https://i.pinimg.com/736x/3e/ff/0c/3eff0c8b44b7b37d5badc7965b3600ef.jpg" alt="Amina Diallo" style="width: 100%; height: 100%; object-fit: cover;">
+                            </div>
+                            <h3>Amina Diallo</h3>
+                            <p style="color: var(--primary); font-weight: 500;">Installation Manager</p>
+                            <p>Oversees our network of certified installation professionals.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active-page');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active-page');
+            
+            // Update active nav link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Find the link that was clicked (need to check which one matches the page)
+            const links = document.querySelectorAll('.nav-links a');
+            for (let i = 0; i < links.length; i++) {
+                if (links[i].getAttribute('onclick').includes(pageId)) {
+                    links[i].classList.add('active');
+                    break;
+                }
+            }
+            
+            // Close mobile menu if open
+            navLinks.classList.remove('active');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+            
+            // Initialize map if on stories page
+            if (pageId === 'stories' && !window.mapInitialized) {
+                initMap();
+                window.mapInitialized = true;
+            }
+        }
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Animate stats on home page
+        function animateStats() {
+            const stats = [
+                { element: 'waterSaved', target: 12500000, suffix: '' },
+                { element: 'moneySaved', target: 1250, prefix: '$', suffix: '' },
+                { element: 'systemsInstalled', target: 842, suffix: '' },
+                { element: 'co2Reduced', target: 125000, suffix: '' }
+            ];
+            
+            const duration = 2000; // 2 seconds
+            const interval = 20; // update every 20ms
+            const steps = duration / interval;
+            
+            stats.forEach(stat => {
+                const element = document.getElementById(stat.element);
+                const target = stat.target;
+                const increment = target / steps;
+                let current = 0;
+                
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    
+                    element.textContent = stat.prefix ? stat.prefix + Math.floor(current).toLocaleString() : Math.floor(current).toLocaleString();
+                }, interval);
+            });
+        }
+        
+        // Run animation when home page is shown
+        document.getElementById('home').addEventListener('animationend', animateStats);
+
+        // Rainwater calculation
+        function calculateRainwater() {
+            const roofArea = parseFloat(document.getElementById('roofArea').value);
+            const rainfall = parseFloat(document.getElementById('rainfall').value);
+            const runoffCoefficient = parseFloat(document.getElementById('runoffCoefficient').value);
+            const waterCost = parseFloat(document.getElementById('waterCost').value);
+            const usagePercentage = parseFloat(document.getElementById('usagePercentage').value);
+            
+            if (isNaN(roofArea) || isNaN(rainfall) || isNaN(waterCost)) {
+                alert('Please enter valid numbers for all required fields');
+                return;
+            }
+            
+            // Calculation: Roof area (m²) × Rainfall (mm) × Runoff coefficient × 0.8 (efficiency factor)
+            // Convert mm to m (1mm = 0.001m) and then to liters (1m³ = 1000 liters)
+            const harvestPotential = roofArea * (rainfall * 0.001) * runoffCoefficient * 0.8 * 1000;
+            const usableWater = harvestPotential * (usagePercentage / 100);
+            const annualSavings = (usableWater / 1000) * waterCost;
+            
+            // Display result
+            document.getElementById('resultValue').textContent = Math.round(harvestPotential).toLocaleString();
+            document.getElementById('moneySavedResult').textContent = `Annual savings: $${Math.round(annualSavings).toLocaleString()}`;
+            document.getElementById('paybackPeriod').textContent = `System payback period: ${Math.round(2500 / annualSavings)} years (assuming $2,500 system cost)`;
+            document.getElementById('bathtubs').textContent = Math.round(harvestPotential / 80); // Approx 80L per bathtub
+            document.getElementById('people').textContent = Math.round(harvestPotential / 54750); // 150L/day * 365
+            
+            // Generate description based on amount
+            let description = '';
+            if (harvestPotential > 50000) {
+                description = 'This could supply all your outdoor water needs and more!';
+            } else if (harvestPotential > 20000) {
+                description = 'Perfect for garden irrigation and household uses.';
+            } else {
+                description = 'Great start for reducing your water footprint.';
+            }
+            
+            document.getElementById('resultDescription').innerHTML += ' ' + description;
+            
+            // Show result box with animation
+            const resultBox = document.getElementById('resultBox');
+            resultBox.style.display = 'block';
+            resultBox.style.animation = 'fadeIn 0.5s ease';
+        }
+
+        // Water quality checker tabs
+        function switchTab(tab) {
+            document.querySelectorAll('.checker-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.checker-content').forEach(c => c.classList.remove('active'));
+            
+            document.querySelector(`.checker-tab[onclick="switchTab('${tab}')"]`).classList.add('active');
+            document.getElementById(`${tab}-tab`).classList.add('active');
+        }
+
+        // Analyze water quality manually
+        function analyzeWaterQuality() {
+            const appearance = document.getElementById('waterAppearance').value;
+            const color = document.getElementById('waterColor').value;
+            const ph = parseFloat(document.getElementById('waterPh').value);
+            const turbidity = parseFloat(document.getElementById('waterTurbidity').value);
+            const bacteria = document.getElementById('waterBacteria').value;
+            const chemicals = document.getElementById('waterChemicals').value;
+            const odor = document.getElementById('waterOdor').value;
+            
+            let resultHTML = '';
+            
+            // Appearance analysis
+            if (appearance === 'clear') {
+                resultHTML += '<p><i class="fas fa-check-circle" style="color: var(--success);"></i> <strong>Appearance:</strong> Clear - Excellent visual quality</p>';
+            } else if (appearance === 'slightlyCloudy') {
+                resultHTML += '<p><i class="fas fa-exclamation-triangle" style="color: var(--warning);"></i> <strong>Appearance:</strong> Slightly cloudy - May indicate suspended particles</p>';
+            } else {
+                resultHTML += '<p><i class="fas fa-times-circle" style="color: var(--danger);"></i> <strong>Appearance:</strong> Cloudy/colored - Further testing recommended</p>';
+            }
+            
+            // pH analysis
+            if (!isNaN(ph)) {
+                if (ph >= 6.5 && ph <= 8.5) {
+                    resultHTML += `<p><i class="fas fa-check-circle" style="color: var(--success);"></i> <strong>pH:</strong> ${ph} - Within ideal range</p>`;
+                } else if (ph >= 5.5 && ph <= 9) {
+                    resultHTML += `<p><i class="fas fa-exclamation-triangle" style="color: var(--warning);"></i> <strong>pH:</strong> ${ph} - Acceptable but not ideal</p>`;
+                } else {
+                    resultHTML += `<p><i class="fas fa-times-circle" style="color: var(--danger);"></i> <strong>pH:</strong> ${ph} - Outside safe range</p>`;
+                }
+            }
+            
+            // Turbidity analysis
+            if (!isNaN(turbidity)) {
+                if (turbidity < 5) {
+                    resultHTML += `<p><i class="fas fa-check-circle" style="color: var(--success);"></i> <strong>Turbidity:</strong> ${turbidity} NTU - Very clear</p>`;
+                } else if (turbidity < 20) {
+                    resultHTML += `<p><i class="fas fa-exclamation-triangle" style="color: var(--warning);"></i> <strong>Turbidity:</strong> ${turbidity} NTU - Somewhat cloudy</p>`;
+                } else {
+                    resultHTML += `<p><i class="fas fa-times-circle" style="color: var(--danger);"></i> <strong>Turbidity:</strong> ${turbidity} NTU - Very cloudy, needs filtration</p>`;
+                }
+            }
+            
+            // Bacteria analysis
+            if (bacteria === 'none') {
+                resultHTML += '<p><i class="fas fa-check-circle" style="color: var(--success);"></i> <strong>Bacteria:</strong> None detected - Excellent</p>';
+            } else if (bacteria === 'low') {
+                resultHTML += '<p><i class="fas fa-exclamation-triangle" style="color: var(--warning);"></i> <strong>Bacteria:</strong> Low levels - Safe for non-potable uses</p>';
+            } else {
+                resultHTML += '<p><i class="fas fa-times-circle" style="color: var(--danger);"></i> <strong>Bacteria:</strong> Significant levels - Treatment required</p>';
+            }
+            
+            // Chemicals analysis
+            if (chemicals === 'none') {
+                resultHTML += '<p><i class="fas fa-check-circle" style="color: var(--success);"></i> <strong>Chemicals:</strong> None detected - Excellent</p>';
+            } else if (chemicals === 'low') {
+                resultHTML += '<p><i class="fas fa-exclamation-triangle" style="color: var(--warning);"></i> <strong>Chemicals:</strong> Low levels - Consider filtration</p>';
+            } else {
+                resultHTML += '<p><i class="fas fa-times-circle" style="color: var(--danger);"></i> <strong>Chemicals:</strong> Significant levels - Not recommended for use</p>';
+            }
+            
+            // Odor analysis
+            if (odor && odor.toLowerCase().includes('none')) {
+                resultHTML += '<p><i class="fas fa-check-circle" style="color: var(--success);"></i> <strong>Odor:</strong> None detected - Good sign</p>';
+            } else if (odor) {
+                resultHTML += `<p><i class="fas fa-exclamation-triangle" style="color: var(--warning);"></i> <strong>Odor:</strong> ${odor} - May indicate contamination</p>`;
+            }
+            
+            // Overall recommendation
+            if ((appearance === 'clear' || appearance === 'slightlyCloudy') && 
+                (!isNaN(ph) && ph >= 6.5 && ph <= 8.5) && 
+                (!isNaN(turbidity) && turbidity < 5) && 
+                bacteria === 'none' && chemicals === 'none') {
+                resultHTML += '<div style="margin-top: 1rem; padding: 1rem; background-color: rgba(46, 204, 113, 0.1); border-radius: 5px; border-left: 4px solid var(--success);">';
+                resultHTML += '<h4><i class="fas fa-check-circle" style="color: var(--success);"></i> Excellent Quality</h4>';
+                resultHTML += '<p>Your water appears to be of excellent quality and suitable for all uses, including drinking with basic treatment.</p>';
+                resultHTML += '</div>';
+            } else if ((appearance !== 'colored') && 
+                      (!isNaN(ph) && ph >= 5.5 && ph <= 9) && 
+                      (!isNaN(turbidity) && turbidity < 20) && 
+                      (bacteria === 'none' || bacteria === 'low') && 
+                      (chemicals === 'none' || chemicals === 'low')) {
+                resultHTML += '<div style="margin-top: 1rem; padding: 1rem; background-color: rgba(243, 156, 18, 0.1); border-radius: 5px; border-left: 4px solid var(--warning);">';
+                resultHTML += '<h4><i class="fas fa-exclamation-triangle" style="color: var(--warning);"></i> Good Quality</h4>';
+                resultHTML += '<p>Your water is suitable for non-potable uses like irrigation and toilet flushing. Consider treatment for other uses.</p>';
+                resultHTML += '</div>';
+            } else {
+                resultHTML += '<div style="margin-top: 1rem; padding: 1rem; background-color: rgba(231, 76, 60, 0.1); border-radius: 5px; border-left: 4px solid var(--danger);">';
+                resultHTML += '<h4><i class="fas fa-times-circle" style="color: var(--danger);"></i> Poor Quality</h4>';
+                resultHTML += '<p>Your water may not be safe for use without significant treatment. We recommend professional testing.</p>';
+                resultHTML += '</div>';
+            }
+            
+            document.getElementById('qualityResultContent').innerHTML = resultHTML;
+            document.getElementById('qualityResultBox').style.display = 'block';
+        }
+
+        // Handle AI water upload
+        function handleWaterUpload(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    // In a real app, this would send to an API for analysis
+                    // Here we simulate results based on random factors
+                    simulateAIResults();
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // Simulate AI analysis results
+        function simulateAIResults() {
+            const qualities = ['excellent', 'good', 'fair', 'poor'];
+            const randomQuality = qualities[Math.floor(Math.random() * qualities.length)];
+            
+            let resultHTML = '';
+            
+            if (randomQuality === 'excellent') {
+                resultHTML += '<div style="margin-bottom: 1rem; padding: 1rem; background-color: rgba(46, 204, 113, 0.1); border-radius: 5px; border-left: 4px solid var(--success);">';
+                resultHTML += '<h4><i class="fas fa-check-circle" style="color: var(--success);"></i> Excellent Water Quality</h4>';
+                resultHTML += '<p>Our AI analysis indicates your water appears clear with no visible contaminants. Likely safe for all uses with basic treatment.</p>';
+                resultHTML += '</div>';
+                
+                resultHTML += '<p><strong>Estimated Parameters:</strong></p>';
+                resultHTML += '<ul style="margin: 0.5rem 0 1rem 2rem;">';
+                resultHTML += '<li>Turbidity: < 5 NTU (low)</li>';
+                resultHTML += '<li>pH: 6.5-7.5 (neutral)</li>';
+                resultHTML += '<li>No visible organic matter</li>';
+                resultHTML += '<li>No chemical discoloration</li>';
+                resultHTML += '</ul>';
+            } else if (randomQuality === 'good') {
+                resultHTML += '<div style="margin-bottom: 1rem; padding: 1rem; background-color: rgba(243, 156, 18, 0.1); border-radius: 5px; border-left: 4px solid var(--warning);">';
+                resultHTML += '<h4><i class="fas fa-exclamation-triangle" style="color: var(--warning);"></i> Good Water Quality</h4>';
+                resultHTML += '<p>Our AI detected slight cloudiness but no major contaminants. Suitable for non-potable uses with possible treatment needed for other uses.</p>';
+                resultHTML += '</div>';
+                
+                resultHTML += '<p><strong>Estimated Parameters:</strong></p>';
+                resultHTML += '<ul style="margin: 0.5rem 0 1rem 2rem;">';
+                resultHTML += '<li>Turbidity: 5-15 NTU (moderate)</li>';
+                resultHTML += '<li>pH: 6.0-8.0</li>';
+                resultHTML += '<li>Possible slight organic content</li>';
+                resultHTML += '<li>No chemical discoloration</li>';
+                resultHTML += '</ul>';
+            } else if (randomQuality === 'fair') {
+                resultHTML += '<div style="margin-bottom: 1rem; padding: 1rem; background-color: rgba(243, 156, 18, 0.1); border-radius: 5px; border-left: 4px solid var(--warning);">';
+                resultHTML += '<h4><i class="fas fa-exclamation-triangle" style="color: var(--warning);"></i> Fair Water Quality</h4>';
+                resultHTML += '<p>Our AI detected noticeable cloudiness or slight discoloration. Recommend filtration before any use and testing for potability.</p>';
+                resultHTML += '</div>';
+                
+                resultHTML += '<p><strong>Estimated Parameters:</strong></p>';
+                resultHTML += '<ul style="margin: 0.5rem 0 1rem 2rem;">';
+                resultHTML += '<li>Turbidity: 15-30 NTU (high)</li>';
+                resultHTML += '<li>pH: 5.5-8.5</li>';
+                resultHTML += '<li>Visible organic matter likely</li>';
+                resultHTML += '<li>Possible slight chemical content</li>';
+                resultHTML += '</ul>';
+            } else {
+                resultHTML += '<div style="margin-bottom: 1rem; padding: 1rem; background-color: rgba(231, 76, 60, 0.1); border-radius: 5px; border-left: 4px solid var(--danger);">';
+                resultHTML += '<h4><i class="fas fa-times-circle" style="color: var(--danger);"></i> Poor Water Quality</h4>';
+                resultHTML += '<p>Our AI detected significant cloudiness or discoloration. Not recommended for use without professional testing and treatment.</p>';
+                resultHTML += '</div>';
+                
+                resultHTML += '<p><strong>Estimated Parameters:</strong></p>';
+                resultHTML += '<ul style="margin: 0.5rem 0 1rem 2rem;">';
+                resultHTML += '<li>Turbidity: > 30 NTU (very high)</li>';
+                resultHTML += '<li>pH: possibly outside 5.5-8.5 range</li>';
+                resultHTML += '<li>Significant organic matter likely</li>';
+                resultHTML += '<li>Possible chemical contamination</li>';
+                resultHTML += '</ul>';
+            }
+            
+            resultHTML += '<p style="font-size: 0.9rem; color: var(--gray);"><i class="fas fa-info-circle"></i> Note: AI analysis is not a substitute for laboratory testing, especially for drinking water.</p>';
+            
+            document.getElementById('aiResultContent').innerHTML = resultHTML;
+            document.getElementById('aiResultBox').style.display = 'block';
+        }
+
+        // Filter products in marketplace
+        function filterProducts() {
+            // In a real app, this would filter the product list
+            alert('Filters applied! In a real application, this would filter the product list.');
+        }
+
+        // Initialize map for success stories
+        function initMap() {
+            const map = L.map('map').setView([39.8283, -98.5795], 4); // Center on US
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+            
+            // Add sample markers
+            const markers = [
+                { lat: 45.5231, lng: -122.6765, type: 'residential', title: 'Portland Family Home', savings: '65% water reduction' },
+                { lat: 30.2672, lng: -97.7431, type: 'community', title: 'Austin School Project', savings: '40,000L annually' },
+                { lat: 38.5816, lng: -121.4944, type: 'agricultural', title: 'Napa Valley Vineyard', savings: '500,000L storage' },
+                { lat: 25.7617, lng: -80.1918, type: 'commercial', title: 'Miami Office Building', savings: '75% non-potable water' },
+                { lat: 41.8781, lng: -87.6298, type: 'residential', title: 'Chicago Townhouse', savings: '55% water bill savings' }
+            ];
+            
+            markers.forEach(marker => {
+                const m = L.marker([marker.lat, marker.lng]).addTo(map);
+                m.bindPopup(`<b>${marker.title}</b><br>${marker.savings}`);
+                
+                m.on('click', function() {
+                    document.getElementById('selectedStory').style.display = 'block';
+                    document.getElementById('storyTitle').textContent = marker.title;
+                    document.getElementById('storyLocation').textContent = `Location: ${marker.lat.toFixed(2)}, ${marker.lng.toFixed(2)}`;
+                    document.getElementById('storySavings').textContent = `Savings: ${marker.savings}`;
+                    document.getElementById('storyLink').href = '#';
+                });
+            });
+        }
+
+        // Filter stories on map
+        function filterStories() {
+            const type = document.getElementById('storyType').value;
+            // In a real app, this would filter the markers on the map
+            console.log(`Filtering stories by type: ${type}`);
+        }
+
+        // Home simulator tabs
+        function switchSimulatorTab(tab) {
+            document.querySelectorAll('.simulator-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.simulator-content').forEach(c => c.classList.remove('active'));
+            
+            document.querySelector(`.simulator-tab[onclick="switchSimulatorTab('${tab}')"]`).classList.add('active');
+            document.getElementById(`${tab}-tab`).classList.add('active');
+            
+            if (tab === 'performance') {
+                runPerformanceSimulation();
+            } else if (tab === 'cost') {
+                runCostAnalysis();
+            }
+        }
+
+        // Update home simulator visuals
+        function updateSimulator() {
+            const houseType = document.getElementById('houseType').value;
+            const roofMaterial = document.getElementById('roofMaterial').value;
+            const tankSize = document.getElementById('tankSize').value;
+            const tankLocation = document.getElementById('tankLocation').value;
+            
+            // Show/hide custom inputs
+            document.getElementById('customRoofGroup').style.display = houseType === 'custom' ? 'block' : 'none';
+            document.getElementById('customTankGroup').style.display = tankSize === 'custom' ? 'block' : 'none';
+            
+            // Get values
+            let roofArea = 200; // default medium
+            if (houseType === 'small') roofArea = 100;
+            else if (houseType === 'large') roofArea = 300;
+            else if (houseType === 'custom') roofArea = parseFloat(document.getElementById('customRoof').value) || 200;
+            
+            let tankCapacity = 5000; // default
+            if (tankSize === '1000') tankCapacity = 1000;
+            else if (tankSize === '2000') tankCapacity = 2000;
+            else if (tankSize === '10000') tankCapacity = 10000;
+            else if (tankSize === 'custom') tankCapacity = parseFloat(document.getElementById('customTank').value) || 5000;
+            
+            // Update house model visualization
+            const roof = document.getElementById('roofAreaVisual');
+            const tank = document.getElementById('tankVisual');
+            
+            // Adjust roof size
+            roof.style.width = `${roofArea / 2}%`;
+            
+            // Adjust tank size based on capacity (visual approximation)
+            const tankHeight = 20 + (tankCapacity / 5000) * 20; // 40% at 5000L
+            tank.style.height = `${tankHeight}%`;
+            
+            // Position tank based on location
+            if (tankLocation === 'above') {
+                tank.style.bottom = '50%';
+                tank.style.right = '10%';
+            } else if (tankLocation === 'below') {
+                tank.style.bottom = '10%';
+                tank.style.right = '10%';
+            } else { // basement
+                tank.style.bottom = '10%';
+                tank.style.right = '30%';
+            }
+            
+            // Update summary
+            document.getElementById('summaryRoof').textContent = roofArea;
+            document.getElementById('summaryTank').textContent = tankCapacity.toLocaleString();
+            
+            // Calculate collection potential (simplified)
+            const rainfall = 1000; // mm/year for simulation
+            const runoffCoefficient = roofMaterial === 'metal' ? 0.95 : 
+                                    roofMaterial === 'tile' ? 0.9 : 
+                                    roofMaterial === 'concrete' ? 0.8 : 0.6;
+            
+            const collectionPotential = roofArea * (rainfall * 0.001) * runoffCoefficient * 0.8 * 1000;
+            document.getElementById('summaryCollection').textContent = Math.round(collectionPotential).toLocaleString();
+            
+            // Estimate savings percentage based on tank size and usage
+            const usageOptions = document.getElementById('waterUses').selectedOptions;
+            const uses = Array.from(usageOptions).map(opt => opt.value);
+            
+            let savingsPercent = 0;
+            if (uses.includes('garden')) savingsPercent += 30;
+            if (uses.includes('toilet')) savingsPercent += 20;
+            if (uses.includes('laundry')) savingsPercent += 15;
+            if (uses.includes('drinking')) savingsPercent += 10;
+            
+            // Adjust based on tank capacity (can't save more water than you can store)
+            const maxSavingsFromTank = (tankCapacity / (collectionPotential / 365)) * 100; // Daily usage
+            savingsPercent = Math.min(savingsPercent, maxSavingsFromTank);
+            
+            document.getElementById('summarySavings').textContent = Math.round(savingsPercent);
+        }
+
+        // Run performance simulation
+        function runPerformanceSimulation() {
+            const location = document.getElementById('simLocation').value;
+            
+            // Get rainfall data for location (simplified)
+            let rainfallData = [];
+            if (location === 'portland') {
+                rainfallData = [150, 120, 110, 70, 50, 30, 10, 20, 50, 100, 150, 160]; // Portland, OR
+            } else if (location === 'austin') {
+                rainfallData = [50, 50, 70, 80, 120, 90, 50, 60, 90, 90, 60, 50]; // Austin, TX
+            } else if (location === 'phoenix') {
+                rainfallData = [20, 20, 20, 10, 5, 2, 20, 30, 20, 10, 20, 20]; // Phoenix, AZ
+            } else if (location === 'miami') {
+                rainfallData = [50, 60, 80, 90, 150, 200, 150, 180, 200, 150, 80, 60]; // Miami, FL
+            } else {
+                rainfallData = [50, 50, 80, 90, 100, 100, 90, 90, 80, 70, 80, 60]; // Chicago, IL
+            }
+            
+            // Calculate annual rainfall
+            const annualRainfall = rainfallData.reduce((sum, val) => sum + val, 0);
+            document.getElementById('simRainfall').textContent = annualRainfall;
+            
+            // Get system parameters
+            const roofArea = parseFloat(document.getElementById('summaryRoof').textContent) || 200;
+            const runoffCoefficient = document.getElementById('roofMaterial').value === 'metal' ? 0.95 : 
+                                     document.getElementById('roofMaterial').value === 'tile' ? 0.9 : 
+                                     document.getElementById('roofMaterial').value === 'concrete' ? 0.8 : 0.6;
+            const tankCapacity = parseFloat(document.getElementById('summaryTank').textContent.replace(/,/g, '')) || 5000;
+            
+            // Simulate monthly performance
+            const chartBars = document.getElementById('chartBars');
+            chartBars.innerHTML = '';
+            
+            const chartLegend = document.getElementById('chartLegend');
+            chartLegend.innerHTML = '';
+            
+            let totalCollected = 0;
+            let totalOverflow = 0;
+            let reliabilityDays = 0;
+            
+            rainfallData.forEach((rainfall, index) => {
+                const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+                const daysInMonth = new Date(2023, index + 1, 0).getDate();
+                
+                // Calculate monthly collection
+                const monthlyCollection = roofArea * (rainfall * 0.001) * runoffCoefficient * 0.8 * 1000;
+                totalCollected += Math.min(monthlyCollection, tankCapacity);
+                
+                // Calculate overflow
+                const overflow = Math.max(0, monthlyCollection - tankCapacity);
+                totalOverflow += overflow;
+                
+                // Calculate reliability (simplified)
+                reliabilityDays += (monthlyCollection > (tankCapacity * 0.3)) ? daysInMonth : daysInMonth * 0.7;
+                
+                // Create bar for this month
+                const barContainer = document.createElement('div');
+                barContainer.style.flex = '1';
+                barContainer.style.display = 'flex';
+                barContainer.style.flexDirection = 'column';
+                barContainer.style.height = '100%';
+                barContainer.style.alignItems = 'center';
+                barContainer.style.justifyContent = 'flex-end';
+                
+                const barLabel = document.createElement('div');
+                barLabel.textContent = monthNames[index];
+                barLabel.style.fontSize = '0.8rem';
+                barLabel.style.marginBottom = '5px';
+                
+                const barUsed = document.createElement('div');
+                barUsed.style.backgroundColor = 'var(--primary)';
+                barUsed.style.width = '80%';
+                barUsed.style.borderRadius = '3px 3px 0 0';
+                barUsed.style.height = `${Math.min(100, (monthlyCollection / tankCapacity) * 100)}%`;
+                barUsed.title = `Collected: ${Math.round(monthlyCollection)}L`;
+                
+                const barOverflow = document.createElement('div');
+                barOverflow.style.backgroundColor = 'var(--accent)';
+                barOverflow.style.width = '80%';
+                barOverflow.style.borderRadius = '0 0 3px 3px';
+                barOverflow.style.height = `${Math.max(0, ((monthlyCollection - tankCapacity) / tankCapacity) * 100)}%`;
+                barOverflow.title = `Overflow: ${Math.round(overflow)}L`;
+                
+                barContainer.appendChild(barUsed);
+                barContainer.appendChild(barOverflow);
+                barContainer.appendChild(barLabel);
+                chartBars.appendChild(barContainer);
+            });
+            
+            // Add legend
+            const usedLegend = document.createElement('div');
+            usedLegend.style.display = 'flex';
+            usedLegend.style.alignItems = 'center';
+            usedLegend.innerHTML = '<div style="width: 15px; height: 15px; background-color: var(--primary); margin-right: 5px;"></div> Water Collected';
+            chartLegend.appendChild(usedLegend);
+            
+            const overflowLegend = document.createElement('div');
+            overflowLegend.style.display = 'flex';
+            overflowLegend.style.alignItems = 'center';
+            overflowLegend.innerHTML = '<div style="width: 15px; height: 15px; background-color: var(--accent); margin-right: 5px;"></div> Overflow (Lost)';
+            chartLegend.appendChild(overflowLegend);
+            
+            // Update results
+            document.getElementById('simCollected').textContent = Math.round(totalCollected).toLocaleString();
+            document.getElementById('simCollectionPercent').textContent = Math.round((totalCollected / (roofArea * (annualRainfall * 0.001) * runoffCoefficient * 0.8 * 1000)) * 100);
+            document.getElementById('simOverflow').textContent = Math.round(totalOverflow).toLocaleString();
+            document.getElementById('simReliability').textContent = Math.round((reliabilityDays / 365) * 100);
+        }
+
+        // Run cost analysis
+        function runCostAnalysis() {
+            const systemCost = parseFloat(document.getElementById('systemCost').value) || 3500;
+            const waterPrice = parseFloat(document.getElementById('waterPrice').value) || 2.50;
+            const maintenanceCost = parseFloat(document.getElementById('maintenanceCost').value) || 150;
+            
+            // Get annual water savings from performance tab or estimate
+            let annualSavings;
+            try {
+                annualSavings = parseFloat(document.getElementById('simCollected').textContent.replace(/,/g, '')) / 1000 * waterPrice;
+            } catch {
+                // If performance simulation hasn't run, estimate
+                const roofArea = parseFloat(document.getElementById('summaryRoof').textContent) || 200;
+                const runoffCoefficient = document.getElementById('roofMaterial').value === 'metal' ? 0.95 : 
+                                         document.getElementById('roofMaterial').value === 'tile' ? 0.9 : 
+                                         document.getElementById('roofMaterial').value === 'concrete' ? 0.8 : 0.6;
+                const annualRainfall = 1000; // mm/year estimate
+                
+                annualSavings = roofArea * (annualRainfall * 0.001) * runoffCoefficient * 0.8 * waterPrice * 0.5; // 50% usage
+            }
+            
+            // Calculate 10-year projection
+            const costChart = document.getElementById('costChart');
+            costChart.innerHTML = '';
+            
+            const costLegend = document.getElementById('costLegend');
+            costLegend.innerHTML = '';
+            
+            let cumulativeSavings = 0;
+            let cumulativeCost = systemCost;
+            let paybackYear = 0;
+            
+            for (let year = 1; year <= 10; year++) {
+                cumulativeSavings += annualSavings;
+                cumulativeCost += maintenanceCost;
+                
+                const net = cumulativeSavings - cumulativeCost;
+                
+                // Create bar for this year
+                const barContainer = document.createElement('div');
+                barContainer.style.flex = '1';
+                barContainer.style.display = 'flex';
+                barContainer.style.flexDirection = 'column';
+                barContainer.style.height = '100%';
+                barContainer.style.alignItems = 'center';
+                barContainer.style.justifyContent = 'flex-end';
+                
+                const barLabel = document.createElement('div');
+                barLabel.textContent = `Y${year}`;
+                barLabel.style.fontSize = '0.8rem';
+                barLabel.style.marginBottom = '5px';
+                
+                const barCost = document.createElement('div');
+                barCost.style.backgroundColor = 'var(--danger)';
+                barCost.style.width = '60%';
+                barCost.style.borderRadius = '3px 3px 0 0';
+                barCost.style.height = `${Math.min(100, (cumulativeCost / systemCost) * 30)}%`; // Scale for visibility
+                barCost.title = `Cumulative Cost: $${Math.round(cumulativeCost)}`;
+                
+                const barSavings = document.createElement('div');
+                barSavings.style.backgroundColor = 'var(--success)';
+                barSavings.style.width = '60%';
+                barSavings.style.borderRadius = '0 0 3px 3px';
+                barSavings.style.height = `${Math.min(100, (cumulativeSavings / (systemCost * 2)) * 100)}%`; // Scale for visibility
+                barSavings.title = `Cumulative Savings: $${Math.round(cumulativeSavings)}`;
+                
+                barContainer.appendChild(barCost);
+                barContainer.appendChild(barSavings);
+                barContainer.appendChild(barLabel);
+                costChart.appendChild(barContainer);
+                
+                // Check for payback year
+                if (net >= 0 && paybackYear === 0) {
+                    paybackYear = year;
+                }
+            }
+            
+            // Add legend
+            const costLegendItem = document.createElement('div');
+            costLegendItem.style.display = 'flex';
+            costLegendItem.style.alignItems = 'center';
+            costLegendItem.innerHTML = '<div style="width: 15px; height: 15px; background-color: var(--danger); margin-right: 5px;"></div> Cumulative Cost';
+            costLegend.appendChild(costLegendItem);
+            
+            const savingsLegendItem = document.createElement('div');
+            savingsLegendItem.style.display = 'flex';
+            savingsLegendItem.style.alignItems = 'center';
+            savingsLegendItem.innerHTML = '<div style="width: 15px; height: 15px; background-color: var(--success); margin-right: 5px;"></div> Cumulative Savings';
+            costLegend.appendChild(savingsLegendItem);
+            
+            // Update results
+            document.getElementById('initialCost').textContent = systemCost.toLocaleString();
+            document.getElementById('annualSavings').textContent = Math.round(annualSavings).toLocaleString();
+            document.getElementById('paybackPeriod').textContent = paybackYear || '>10';
+            document.getElementById('netSavings').textContent = Math.round((annualSavings * 10) - systemCost - (maintenanceCost * 10)).toLocaleString();
+        }
+
+        // Initialize house simulator
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSimulator();
+            
+            // Show custom inputs when needed
+            document.getElementById('houseType').addEventListener('change', function() {
+                document.getElementById('customRoofGroup').style.display = this.value === 'custom' ? 'block' : 'none';
+                updateSimulator();
+            });
+            
+            document.getElementById('tankSize').addEventListener('change', function() {
+                document.getElementById('customTankGroup').style.display = this.value === 'custom' ? 'block' : 'none';
+                updateSimulator();
+            });
+            
+            document.getElementById('customRoof').addEventListener('input', updateSimulator);
+            document.getElementById('customTank').addEventListener('input', updateSimulator);
+        });
+    </script>
+</body>
+</html>
